@@ -10,12 +10,12 @@ from utils.helpers import data_to_file
 from utils.Logger import Logger
 
 
-class Evaluator(metaclass=OrderedClassMembers):
+class Evaluator(metaclass = OrderedClassMembers):
 
     eval_data = []
     file_prefix = None
 
-    def __init__(self, lang: str, props: ModelProperties, proc: ProcessManager, default_model_eval: bool):
+    def __init__(self, lang: str, props: ModelProperties, proc: ProcessManager, default_model_eval: bool) -> None:
         self._lang = lang
         self._props = props
         self.default_model_eval = default_model_eval
@@ -24,6 +24,7 @@ class Evaluator(metaclass=OrderedClassMembers):
     def evaluate(self):
         """Evaluates Tesseract model for specified languages."""
         Logger.info('Evaluating model...', Logger.log.info)
+        
         if self.default_model_eval:
             model = f'{self._props.model_path}/{self._lang}.lstm'
             self.file_prefix = "before"
