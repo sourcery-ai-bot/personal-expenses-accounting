@@ -7,20 +7,23 @@ from utils.font import fonts_to_json, supported_fonts
 from utils.helpers import read_file, read_json
 
 
-class TrainingDataGenerator(metaclass=OrderedClassMembers):
+class TrainingDataGenerator(metaclass = OrderedClassMembers):
 
-    def __init__(self, lang: str, pages: str, props: ModelProperties, proc: ProcessManager):
+    def __init__(self, lang: str, pages: str, props: ModelProperties, proc: ProcessManager) -> None:
         self._lang = lang
         self._pages = pages
         self._props = props
         self._proc = proc
 
-    def generate_training_data(self):
+    def generate_training_data(self) -> int:
         """Generates training data"""
+        
         path = './fonts/'
         fonts_to_json()
         fonts = read_json('fonts')
+        
         ModelProperties.fonts = supported_fonts(fonts, self._lang)
+
         # skip to next language
         if not self._props.fonts:
             print(f'No supported fonts found for {self._lang} language')
@@ -38,9 +41,11 @@ class TrainingDataGenerator(metaclass=OrderedClassMembers):
             '--maxpages', str(self._pages),
             '--output_dir', self._props.training_data
         ]
+        
         process = self._proc.create_process(process_params)
         self._proc.process_output(process)
         process.stdout.close()
         process.kill()
         process.wait()
+
         return process.returncode
