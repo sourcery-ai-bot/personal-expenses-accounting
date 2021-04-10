@@ -86,11 +86,11 @@ class YearChart extends Component {
 	};
 
 	receiptAggregatedData = async (id) => {
-		await fetch(`/receipt/${id}`, {
-			method: "GET",
-			cache: "no-cache",
+		await fetch(`${process.env.REACT_APP_SERVER}/receipt/${id}`, {
+			method: 'GET',
+			cache: 'no-cache',
 			headers: {
-				"Content-Type": "application/json",
+				'Content-Type': 'application/json',
 			},
 		})
 			.then((response) => response.json())
@@ -98,7 +98,7 @@ class YearChart extends Component {
 				this.setState({ receiptData: data }, () => this.yearlySpendings(data));
 			})
 			.catch((error) => {
-				console.error("Error:", error);
+				console.error('Error:', error);
 			});
 	};
 

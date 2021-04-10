@@ -25,17 +25,18 @@ class AddNewReceiptContainer extends Component {
 		this.setState({ toastText: "Receipt is being recognized."});
 		this.readFile(file).then(function(base64string) {
 			const img = base64string.split(",")[1];
-			fetch("http://localhost:5001/recognize", {
-				method: "POST",
-				body: JSON.stringify({ image: img, id: localStorage.getItem("id") }),
-			}).then((response) => {
-				if (response.status == 200) {
-					console.log(response.status);
-				}
+			fetch(`${process.env.REACT_APP_RECOGNITION_API}/recognize`, {
+				method: 'POST',
+				body: JSON.stringify({ image: img, id: localStorage.getItem('id') }),
 			})
-			.catch(function(error) {
-				console.log(error);
-			});
+				.then((response) => {
+					if (response.status == 200) {
+						console.log(response.status);
+					}
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
 		});
 	};
 
@@ -56,7 +57,7 @@ class AddNewReceiptContainer extends Component {
 		 this.readFile(image).then(function(base64string) {
 			const img = base64string.split(",")[1];
 			this.setState({ image: img });
-			fetch('http://localhost:5001/recognize', {
+			fetch(`${process.env.REACT_APP_RECOGNITION_API}/recognize`, {
 				method: 'POST',
 				body: JSON.stringify(this.state),
 			})

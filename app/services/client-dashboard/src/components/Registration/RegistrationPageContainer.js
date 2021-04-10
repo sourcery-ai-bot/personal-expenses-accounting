@@ -25,12 +25,12 @@ class RegistrationFormContainer extends Component {
 	handleSubmit = async (event) => {
 		event.preventDefault();
 
-		await fetch("/register", {
-			method: "POST",
-			redirect: "follow",
-			cache: "no-cache",
+		await fetch(`${process.env.REACT_APP_SERVER}/register`, {
+			method: 'POST',
+			redirect: 'follow',
+			cache: 'no-cache',
 			headers: {
-				"Content-Type": "application/json",
+				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(this.state),
 		}).then((response) =>
@@ -39,7 +39,7 @@ class RegistrationFormContainer extends Component {
 				.then((data) => ({ status: response.status, body: data.status }))
 				.then((res) => {
 					if (res.status == 200) {
-						this.props.history.push("/dashboard");
+						this.props.history.push('/dashboard');
 						return;
 					}
 					this.setState({ errors: res.body });
