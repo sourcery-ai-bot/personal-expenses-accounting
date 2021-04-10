@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import cards from "./cards.scss";
+import cards from "./cards.module.scss";
 import recieptIcon from './icons/receipt-solid.svg';
 import tagIcon from './icons/tags-solid.svg';
 import graphIcon from './icons/today_graph.svg';

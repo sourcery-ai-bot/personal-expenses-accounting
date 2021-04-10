@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ReactApexChart from "react-apexcharts";
-import cards from "../Cards/cards.scss";
+import cards from "../Cards/cards.module.scss";
 
 class YearChart extends Component {
 	constructor(props) {

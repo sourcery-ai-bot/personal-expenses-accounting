@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import dashboard from "../dashboard.scss";
+import dashboard from "../dashboard.module.scss";
 
 class ReceiptSection extends Component {
 	constructor(props) {
