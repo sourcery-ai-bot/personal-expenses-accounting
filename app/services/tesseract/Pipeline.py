@@ -10,9 +10,9 @@ from utils.font import fonts_to_json, supported_fonts
 from utils.helpers import read_json
 from utils.TaskTimerDecorator import timing
 
-class Pipeline():
+class Pipeline:
 
-    def __init__(self, pipeline_tasks: List):
+    def __init__(self, pipeline_tasks: List) -> None:
         self.pipeline_tasks = pipeline_tasks
 
     @timing
@@ -36,14 +36,17 @@ class Pipeline():
 @click.option('--evaluate', default=True, help='Evaluate model before and after training.')
 def main(evaluate):
     langs = ['lav', 'eng']
-    PIPELINE_LIST = []
+    PIPELINE_LIST: List[PipelineBuilder] = []
+
     for lang in langs:
         fonts_to_json()
         fonts = read_json('fonts')
+        
         if supported_fonts(fonts, lang):
             PIPELINE_LIST.append(PipelineBuilder(
                 ModelProperties(lang)).create_pipeline()
             )
+    
     if not PIPELINE_LIST:
         print("No supported fonts found")
         return

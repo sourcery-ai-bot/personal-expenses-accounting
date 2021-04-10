@@ -7,7 +7,7 @@ from ModelProperties import ModelProperties
 from app.base.ProcessManager import ProcessManager
 
 
-class PipelineBuilder(object):
+class PipelineBuilder:
 
     def __init__(self, props: ModelProperties):
         self._props = props
@@ -22,6 +22,6 @@ class PipelineBuilder(object):
             TrainingDataGenerator(lang, pages, self._props, ProcessManager),
             ModelExtractor(lang, self._props, ProcessManager),
             ModelTraining(lang, iterations, self._props, ProcessManager),
-            Evaluator(lang, self._props, ProcessManager, True),
-            Evaluator(lang, self._props, ProcessManager, False)
+            Evaluator(lang, self._props, ProcessManager, default_model_eval = True),
+            Evaluator(lang, self._props, ProcessManager, default_model_eval = False)
         ]
