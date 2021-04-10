@@ -58,7 +58,7 @@ class Dashboard extends Component {
 
 	componentDidMount() {
 		const id = localStorage.getItem("id");
-		this.fetchData(`/user/${id}`, "GET"); 
+		this.fetchData(`${process.env.REACT_APP_SERVER}/user/${id}`, 'GET');
 	}
 
 	postData = async(url, method, data) => {
@@ -73,8 +73,6 @@ class Dashboard extends Component {
 			.catch((error) => {
 				console.error("Error:", error);
 			});
-			// force to update component
-			this.forceUpdate();
 	}
 
 	fetchData = async (url, method) => {
@@ -96,12 +94,13 @@ class Dashboard extends Component {
 
 	deleteReceipt = async () => {
 		const receiptId = this.state.inputData.id;
-		await fetch(`/receipt/${receiptId}`, {
-			method: "DELETE",
-		}).then(response => response.json())
-		.catch((error) => {
-			console.error("Error:", error);
-		});
+		await fetch(`${process.env.REACT_APP_SERVER}/receipt/${receiptId}`, {
+			method: 'DELETE',
+		})
+			.then((response) => response.json())
+			.catch((error) => {
+				console.error('Error:', error);
+			});
 		this.handleClose();
 		this.forceUpdate();
 	};

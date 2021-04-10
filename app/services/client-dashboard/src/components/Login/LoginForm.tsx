@@ -21,7 +21,7 @@ export function LoginForm() {
 
 	const submitForm = async (e: any): Promise<void> => {
 		e.preventDefault();
-		await fetch('/login', {
+		await fetch(`${process.env.REACT_APP_SERVER}/login`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
