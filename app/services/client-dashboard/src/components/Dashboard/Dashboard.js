@@ -2,15 +2,15 @@
 import React, { Component } from 'react';
 import Button from "react-bootstrap/Button";
 import Spinner from "react-bootstrap/Spinner";
-import cards from "./Cards/cards.scss";
+import cards from "./Cards/cards.module.scss";
 import SmallCard from "./Cards/SmallCard";
 import PieChart from "./Charts/PieChart";
 import YearChart from "./Charts/YearChart";
-import dashboard from "./dashboard.scss";
+import dashboard from "./dashboard.module.scss";
 import Header from "./Header";
 import ModalWindow from "./ModalWindow";
 import Nav from "./Nav/Nav";
-import nav from "./Nav/side-nav.scss";
+import nav from "./Nav/side-nav.module.scss";
 import ReceiptSection from "./Receipt/ReceiptSection";
 
 

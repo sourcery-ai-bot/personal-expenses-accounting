@@ -2,7 +2,7 @@ import cx from "classnames";
 import React, { Component } from "react";
 import ReactApexChart from "react-apexcharts";
 import { countBy } from "../../../utils/helpers";
-import cards from "../Cards/cards.scss";
+import cards from "../Cards/cards.module.scss";
 class PieChart extends Component {
 	constructor(props) {
 		super(props);

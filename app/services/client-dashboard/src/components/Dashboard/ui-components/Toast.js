@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import React, { Component } from 'react';
-import toast from "./toast.scss";
+import toast from "./toast.module.scss";
 
 export default class Toast extends Component {
 

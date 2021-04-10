@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import button from "../../ui-elements/button.module.scss";
-import dashboard from "../dashboard.scss";
+import dashboard from "../dashboard.module.scss";
 // import Toast from "../ui-components/Toast";
 
 class AddNewReceipt extends Component {

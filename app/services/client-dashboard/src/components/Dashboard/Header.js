@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import AddNewReceiptContainer from "./AddNewReceipt/AddNewReceiptContainer";
-import dashboard from "./dashboard.scss";
+import dashboard from "./dashboard.module.scss";
 class Header extends Component {
 	render() {
 		return (

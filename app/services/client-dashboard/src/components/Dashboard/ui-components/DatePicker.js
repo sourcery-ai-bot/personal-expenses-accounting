@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { KeyboardDatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { ThemeProvider } from "@material-ui/styles";
 import React, { useEffect, useState } from "react";
-import dashboard from "../dashboard.scss";
+import dashboard from "../dashboard.module.scss";
 
 const materialTheme = createMuiTheme({
 	spacing: 25,

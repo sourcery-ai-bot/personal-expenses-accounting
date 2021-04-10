@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import nav from "./side-nav.scss";
+import nav from "./side-nav.module.scss";
 class Nav extends Component {
 
 	constructor(props) {

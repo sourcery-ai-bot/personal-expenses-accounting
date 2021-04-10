@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Modal from "react-bootstrap/Modal";
 import Row from "react-bootstrap/Row";
-import dashboard from "./dashboard.scss";
+import dashboard from "./dashboard.module.scss";
 import DatePickerComponent from "./ui-components/DatePicker";
 import FileUpload from "./ui-components/FileUpload";
 import { InputContainer, InputOutline } from './ui-components/InputOutline';
