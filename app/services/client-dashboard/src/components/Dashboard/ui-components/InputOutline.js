@@ -4,7 +4,7 @@ const Bar = styled.div`
 	position: absolute;
 	left: 0;
 	bottom: 0;
-	color: lighten(#303f9f, 20%);
+	color: #303f9f;
 	width: 100%;
 	height: 1px;
 
@@ -12,7 +12,7 @@ const Bar = styled.div`
 	&:after {
 		content: '';
 		position: absolute;
-		background: lighten(#303f9f, 20%);
+		background: #303f9f;
 		width: 0;
 		height: 2px;
 		transition: 0.2s ease;
@@ -68,7 +68,7 @@ const Input = styled.input`
 		position: absolute;
 		top: 0;
 		left: 0;
-		color: lighten(#303f9f, 20%);
+		color: #303f9f;
 		font-size: 16px;
 		font-weight: 300;
 		line-height: 60px;

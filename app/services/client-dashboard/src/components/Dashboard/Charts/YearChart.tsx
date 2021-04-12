@@ -1,42 +1,49 @@
-import React, { Component } from "react";
-import ReactApexChart from "react-apexcharts";
-import cards from "../Cards/cards.module.scss";
+import React, { Component } from 'react';
+import ReactApexChart from 'react-apexcharts';
+import cards from '../Cards/cards.module.scss';
 
-class YearChart extends Component {
-	constructor(props) {
+interface Chart {
+	receiptData: any;
+	months: any;
+	series: any;
+	options: any;
+}
+
+export default class YearChart extends Component<{}, Chart> {
+	constructor(props: any) {
 		super(props);
 
 		this.state = {
 			receiptData: {},
 			months: [
-				"January",
-				"February",
-				"March",
-				"April",
-				"May",
-				"June",
-				"July",
-				"August",
-				"September",
-				"October",
-				"November",
-				"December",
+				'January',
+				'February',
+				'March',
+				'April',
+				'May',
+				'June',
+				'July',
+				'August',
+				'September',
+				'October',
+				'November',
+				'December',
 			],
 			series: [
 				{
-					name: "Expenses &euro;",
+					name: 'Expenses &euro;',
 					data: [],
 				},
 			],
 			options: {
 				chart: {
-					type: "line",
+					type: 'line',
 					height: 250,
 				},
 				markers: {
 					size: 6,
-					colors: ["#FFA41B"],
-					strokeColors: "#fff",
+					colors: ['#FFA41B'],
+					strokeColors: '#fff',
 					strokeWidth: 2,
 					hover: {
 						size: 7,
@@ -44,7 +51,7 @@ class YearChart extends Component {
 				},
 				stroke: {
 					width: 4,
-					curve: "smooth",
+					curve: 'smooth',
 				},
 				yaxis: {
 					labels: {
@@ -52,28 +59,28 @@ class YearChart extends Component {
 					},
 				},
 				xaxis: {
-					type: "text",
+					type: 'text',
 					categories: [
-						"Jan",
-						"Feb",
-						"Mar",
-						"Apr",
-						"May",
-						"Jun",
-						"Jul",
-						"Aug",
-						"Sep",
-						"Oct",
-						"Nov",
-						"Dec",
+						'Jan',
+						'Feb',
+						'Mar',
+						'Apr',
+						'May',
+						'Jun',
+						'Jul',
+						'Aug',
+						'Sep',
+						'Oct',
+						'Nov',
+						'Dec',
 					],
 				},
 				title: {
-					text: "Spendings",
-					align: "left",
+					text: 'Spendings',
+					align: 'left',
 					style: {
-						fontSize: "16px",
-						color: "#666",
+						fontSize: '16px',
+						color: '#666',
 					},
 				},
 			},
@@ -81,11 +88,11 @@ class YearChart extends Component {
 	}
 
 	componentDidMount = () => {
-		const id = localStorage.getItem("id");
+		const id = Number(localStorage.getItem('id'));
 		this.receiptAggregatedData(id);
 	};
 
-	receiptAggregatedData = async (id) => {
+	receiptAggregatedData = async (id: number) => {
 		await fetch(`${process.env.REACT_APP_SERVER}/receipt/${id}`, {
 			method: 'GET',
 			cache: 'no-cache',
@@ -102,24 +109,27 @@ class YearChart extends Component {
 			});
 	};
 
-	yearlySpendings = (receiptData) => {
-		let totalSumForMonth = [];
+	yearlySpendings = (receiptData: any) => {
+		let totalSumForMonth: any = [];
 		let receipts = receiptData.yearly;
-		this.state.months.map((value) => {
-			let sum = receipts[value].reduce((curr, prev) => curr + prev, 0);
+		this.state.months.map((value: any) => {
+			let sum = receipts[value].reduce(
+				(curr: number, prev: number) => curr + prev,
+				0
+			);
 			totalSumForMonth.push(sum.toFixed(2));
 		});
-		let monthData = {...this.state.series}[0];
+		let monthData = { ...this.state.series }[0];
 		monthData.data = [...totalSumForMonth];
-		this.setState({monthData});
+		// this.setState({ monthData });
 	};
 
 	render() {
 		const dat = [
 			{
-				name: "Expenses &euro;",
+				name: 'Expenses &euro;',
 				data: this.state.series[0].data,
-			}
+			},
 		];
 		return (
 			<div id="wrapper">
@@ -135,5 +145,3 @@ class YearChart extends Component {
 		);
 	}
 }
-
-export default YearChart;

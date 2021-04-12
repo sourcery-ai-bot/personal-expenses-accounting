@@ -11,7 +11,7 @@ const Router = () => (
 			<Route path="/login" component={LoginFormContainer} />
 			<Route path="/register" component={RegistrationPageContainer} />
 			<Route path="/dashboard" component={Dashboard} />
-			<Route path="/logout" component={LoginFormContainer()} />
+			<Route path="/logout" component={LoginFormContainer} />
 			<Route component={PageNotFound} />
 		</Switch>
 	</BrowserRouter>
