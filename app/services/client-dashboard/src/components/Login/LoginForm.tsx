@@ -32,7 +32,7 @@ export function LoginForm() {
 				.json()
 				.then((data) => ({ status: response.status, body: data }))
 				.then((res) => {
-					if (res.status == 200) {
+					if (res.status === 200) {
 						//set users id to localstorage
 						localStorage.setItem('id', res.body.id);
 						history.push('/dashboard');

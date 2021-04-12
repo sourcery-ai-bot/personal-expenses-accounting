@@ -1,10 +1,17 @@
-import cx from "classnames";
-import React, { Component } from "react";
-import ReactApexChart from "react-apexcharts";
-import { countBy } from "../../../utils/helpers";
-import cards from "../Cards/cards.module.scss";
-class PieChart extends Component {
-	constructor(props) {
+import cx from 'classnames';
+import React, { Component } from 'react';
+import ReactApexChart from 'react-apexcharts';
+import { countBy } from '../../../utils/helpers';
+import cards from '../Cards/cards.module.scss';
+
+interface Chart {
+	categories: any;
+	series: any;
+	options: any;
+}
+
+class PieChart extends Component<{}, Chart> {
+	constructor(props: any) {
 		super(props);
 
 		this.state = {
@@ -14,15 +21,15 @@ class PieChart extends Component {
 				chart: {
 					width: 380,
 					height: 250,
-					type: "pie",
+					type: 'pie',
 				},
 				labels: [
-						"Clothes",
-						"Medicine",
-						"Press subscription",
-						"Books, bookstores",
-						"Web stores",
-						"Stomatology",
+					'Clothes',
+					'Medicine',
+					'Press subscription',
+					'Books, bookstores',
+					'Web stores',
+					'Stomatology',
 				],
 				responsive: [
 					{
@@ -32,7 +39,7 @@ class PieChart extends Component {
 								width: 200,
 							},
 							legend: {
-								position: "bottom",
+								position: 'bottom',
 							},
 						},
 					},
@@ -42,20 +49,20 @@ class PieChart extends Component {
 	}
 
 	componentDidMount() {
-		const id = localStorage.getItem("id");
+		const id = Number(localStorage.getItem('id'));
 		this.getCategories(id);
 	}
 
 	categoriesStat = () => {
 		const cat = countBy(this.state.categories);
-		const series = Object.entries(cat).map(([key, value]) => value * 10);
+		const series = Object.values(cat).map((value: any) => value * 10);
 		this.setState({ series: series });
-		const opt = this.state.options;
+		const opt: any = this.state.options;
 		opt.labels = [...Object.keys(cat)];
-		this.setState({ opt });
+		this.setState({ options: opt });
 	};
 
-	getCategories = async (id) => {
+	getCategories = async (id: number) => {
 		await fetch(`${process.env.REACT_APP_SERVER}/receipt/${id}`, {
 			method: 'GET',
 			cache: 'no-cache',
