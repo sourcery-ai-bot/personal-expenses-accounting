@@ -1,34 +1,17 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
+import useInput from '../../hooks/useInput';
 import buttonStyle from '../ui-elements/button.module.scss';
 import inputStyle from '../ui-elements/input.module.scss';
 
 function RegistrationForm() {
 	const history = useHistory();
 
-	const [name, setName] = useState('');
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
-	const [repeatPassword, setRepeatPassword] = useState('');
+	const [name, setName] = useInput('');
+	const [email, setEmail] = useInput('');
+	const [password, setPassword] = useInput('');
+	const [repeatPassword, setRepeatPassword] = useInput('');
 	const [error, setError] = useState('');
-
-	const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setName(e.target.value);
-	};
-
-	const handleRepeatPasswordChange = (
-		e: React.ChangeEvent<HTMLInputElement>
-	) => {
-		setRepeatPassword(e.target.value);
-	};
-
-	const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setPassword(e.target.value);
-	};
-
-	const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setEmail(e.target.value);
-	};
 
 	const submitForm = async (e: React.ChangeEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -38,7 +21,6 @@ function RegistrationForm() {
 
 		await fetch(`${process.env.REACT_APP_SERVER}/register`, {
 			method: 'POST',
-			redirect: 'follow',
 			cache: 'no-cache',
 			headers: {
 				'Content-Type': 'application/json',
@@ -69,10 +51,10 @@ function RegistrationForm() {
 					required
 					className={inputStyle.input}
 					value={name}
-					onChange={handleNameChange}
+					onChange={setName}
 				/>
 				<label htmlFor="name"> Name</label>
-				<div className={inputStyle.bar}></div>
+				<div className={inputStyle.bar} />
 			</div>
 			<div className={inputStyle.inputContainer}>
 				<input
@@ -82,10 +64,10 @@ function RegistrationForm() {
 					required
 					className={inputStyle.input}
 					value={email}
-					onChange={handleEmailChange}
+					onChange={setEmail}
 				/>
 				<label htmlFor="email">Email</label>
-				<div className={inputStyle.bar}></div>
+				<div className={inputStyle.bar} />
 			</div>
 			<div className={inputStyle.inputContainer}>
 				<input
@@ -95,10 +77,10 @@ function RegistrationForm() {
 					required
 					className={inputStyle.input}
 					value={password}
-					onChange={handlePasswordChange}
+					onChange={setPassword}
 				/>
 				<label htmlFor="password">Password</label>
-				<div className={inputStyle.bar}></div>
+				<div className={inputStyle.bar} />
 			</div>
 			<div className={inputStyle.inputContainer}>
 				<input
@@ -108,10 +90,10 @@ function RegistrationForm() {
 					required
 					className={inputStyle.input}
 					value={repeatPassword}
-					onChange={handleRepeatPasswordChange}
+					onChange={setRepeatPassword}
 				/>
 				<label htmlFor="repeat-password">Repeat Password</label>
-				<div className={inputStyle.bar}></div>
+				<div className={inputStyle.bar} />
 			</div>
 			<button className={buttonStyle.button}>Create Account</button>
 		</form>

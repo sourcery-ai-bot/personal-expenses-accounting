@@ -1,4 +1,4 @@
-import { MyContext } from 'components/globalContext';
+import MyContext from 'components/globalContext';
 import React, { useContext, useState } from 'react';
 import AddNewReceipt from './AddNewReceipt';
 

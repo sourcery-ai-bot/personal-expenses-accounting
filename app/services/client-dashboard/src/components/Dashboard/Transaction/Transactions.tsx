@@ -7,12 +7,9 @@ export default function Transactions(props: any) {
 		const allReceipts = props.receipts.receipts;
 		const receipt = allReceipts.find((x: any) => x.id === receiptID);
 
-		// this.setState({ currentReceipt: receipt }, () => {
-		// 	this.props.showModal();
-		// });
 	};
 
-	const { receipts } = props.receipts;
+	const { response } = props?.receipts;
 	return (
 		<div className={dashboard.receiptSection}>
 			<div className={dashboard.titleSection}>
@@ -21,7 +18,7 @@ export default function Transactions(props: any) {
 				<h5>Amount</h5>
 				<h5>Category</h5>
 			</div>
-			{receipts
+			{response
 				.slice(0)
 				.reverse()
 				.map((receipt: any) => {

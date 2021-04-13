@@ -1,7 +1,7 @@
 import cx from 'classnames';
 import React, { Component } from 'react';
 import ReactApexChart from 'react-apexcharts';
-import { countBy } from '../../../utils/helpers';
+import countBy from '../../../utils/helpers';
 import cards from '../Cards/cards.module.scss';
 
 interface Chart {

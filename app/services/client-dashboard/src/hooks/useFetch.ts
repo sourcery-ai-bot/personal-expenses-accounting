@@ -1,27 +1,31 @@
 import { useEffect, useState } from "react";
 
 // To Do: Add request caching
-const useFetch = (url: string, options: any) => {
+const useFetch = (url: string, options?: any) => {
 
-    const [response, setResponse] = useState(null);
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [ result, setResult ] = useState(null);
+    const [ error, setError ] = useState(null);
+    const [ loading, setLoading ] = useState(false);
 
     useEffect(() => {
+
+        if (!url) return;
+
         const abortController = new AbortController();
         const signal = abortController.signal;
 
         const fetchData = async () => {
             setLoading(true);
             try {
-                const result = await fetch(url, options);
-                const response = await result.json();
-                if (!signal.aborted) {
-                    setResponse(response);
+                const response = await fetch(url, options);
+                const res = await response.json();
+
+                if (!signal.aborted && response.ok) {
+                    setResult(res);
                 }
-            } catch(error: any) {
+            } catch (e: any) {
                 if (!signal.aborted) {
-                    setError(error);
+                    setError(e);
                 }
             } finally {
                 if (!signal.aborted) {
@@ -29,16 +33,16 @@ const useFetch = (url: string, options: any) => {
                 }
             }
 
-        }
+        };
         fetchData();
 
         return () => {
             abortController.abort();
-        }
+        };
 
     }, []);
 
-    return [response, error, loading];
-}
+    return [ result, error, loading ];
+};
 
 export default useFetch;

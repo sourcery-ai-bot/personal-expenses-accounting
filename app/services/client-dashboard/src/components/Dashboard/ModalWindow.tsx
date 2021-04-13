@@ -1,4 +1,4 @@
-import { MyContext } from 'components/globalContext';
+import MyContext from 'components/globalContext';
 import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
@@ -11,7 +11,7 @@ import { InputContainer, InputOutline } from './ui-components/InputOutline';
 import NativeSelects from './ui-components/Select';
 
 export default function ModalWindow(props: any) {
-	console.log('Modal', props);
+
 	const ReceiptFormState = {
 		id: '',
 		image: '',
@@ -47,10 +47,10 @@ export default function ModalWindow(props: any) {
 
 	const onImagePreview = (e: any) => {
 		e.preventDefault();
-		let file: string = e.target.files[0];
+		const file: string = e.target.files[0];
 		setState((prevState) => ({ ...prevState, [image]: file }));
 		if (file != null) {
-			let image = URL.createObjectURL(file);
+			const image = URL.createObjectURL(file);
 			imagePreviewHandler(image);
 		}
 	};
@@ -75,12 +75,12 @@ export default function ModalWindow(props: any) {
 
 	const saveHandler = async () => {
 		const receipt = {
-			id: id,
-			vendor: vendor,
-			amount: amount,
-			warranty: warranty,
-			date: date,
-			category: category,
+			id,
+			vendor,
+			amount,
+			warranty,
+			date,
+			category,
 		};
 
 		props.postData(
@@ -95,10 +95,6 @@ export default function ModalWindow(props: any) {
 		setOpen(false);
 		resetInputFields();
 	};
-
-	// const openModalWindow = () => {
-	// 	setOpen(true);
-	// };
 
 	return (
 		<Modal show={open} onHide={closeModalWindow} size="lg" centered>

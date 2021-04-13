@@ -1,4 +1,4 @@
-import { MyContext } from 'components/globalContext';
+import MyContext from 'components/globalContext';
 import { useContext } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
