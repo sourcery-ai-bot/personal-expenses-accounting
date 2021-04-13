@@ -105,7 +105,7 @@ const InputOutline = (props) => {
 					onChange={onChange}
 				/>
 				<label htmlFor={id}>{label}</label>
-				<Bar></Bar>
+				<Bar />
 			</InputContainer>
 		);
 }

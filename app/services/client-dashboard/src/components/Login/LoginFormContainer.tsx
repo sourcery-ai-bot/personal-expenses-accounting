@@ -1,9 +1,9 @@
 import React from 'react';
 import pcIcon from '../../assets/images/app_development_SVG.svg';
 import Main from '../../App.module.scss';
-import { LoginForm } from './LoginForm';
+import LoginForm from './LoginForm';
 
-export function LoginFormContainer() {
+export default function LoginFormContainer() {
 	return (
 		<div className={Main.flexWrapper}>
 			<div className={Main.imageBlock}>

@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Dashboard from "./Dashboard/Dashboard";
-import { LoginFormContainer } from "./Login/LoginPageContainer";
+import LoginFormContainer from "./Login/LoginFormContainer";
 import PageNotFound from './PageNotFound';
 import RegistrationPageContainer from "./Registration/RegistrationPageContainer";
 

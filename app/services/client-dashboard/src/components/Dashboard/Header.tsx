@@ -1,11 +1,9 @@
-import { MyContext } from 'components/globalContext';
+import MyContext from 'components/globalContext';
 import { useContext } from 'react';
 import AddNewReceiptContainer from './AddNewReceipt/AddNewReceiptContainer';
 import dashboard from './dashboard.module.scss';
 
 export default function Header(props: any) {
-	// console.log('header props', props);
-
 	const [open, setOpen] = useContext(MyContext);
 
 	return (

@@ -1,8 +1,10 @@
 
-export const countBy = (array: any) => {
-    let counts: any = [{}];
+const countBy = (array: any) => {
+    const counts: any = [ {} ];
     array.map((curr: any) => {
-        counts[curr] ? counts[curr]++ : (counts[curr] = 1);
+        counts[ curr ] ? counts[ curr ] += 1: (counts[ curr ] = 1);
     });
     return counts;
-}
+};
+
+export default countBy;
