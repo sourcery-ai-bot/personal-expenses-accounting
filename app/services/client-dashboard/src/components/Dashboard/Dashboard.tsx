@@ -3,9 +3,6 @@ import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
 import useFetch from '../../hooks/useFetch';
 import MyContext from '../globalContext';
-import cards from './Cards/cards.module.scss';
-import PieChart from './Charts/PieChart';
-import YearChart from './Charts/YearChart';
 import dashboard from './dashboard.module.scss';
 import Header from './Header';
 import ModalWindow from './ModalWindow';
@@ -22,9 +19,7 @@ export default function Dashboard() {
 	const [userId, setUserId] = useState(localStorage.getItem('id'));
 
 	const [userData] = useFetch(`${process.env.REACT_APP_SERVER}/user/${userId}`);
-	const [transactionData] = useFetch(
-		`${process.env.REACT_APP_SERVER}/receipt/${userId}`
-	);
+	const [receipts] = useFetch(`${process.env.REACT_APP_SERVER}/receipt/${userId}`);
 
 	const Delete = (props: any) => {
 		return (
@@ -83,15 +78,10 @@ export default function Dashboard() {
 							// imagePreviewHandler={imagePreviewHandler}
 							imagePreview={preview}
 						/>
-
-						<div className={cards.chartsWrapper}>
-							<YearChart />
-							<PieChart />
-						</div>
-						<TransactionCard />
+						<TransactionCard receipts={receipts} />
 						{/* <Transactions
 							showModal={open}
-							receipts={response}
+
 							// ref={receiptSectRef}
 						/> */}
 					</main>
