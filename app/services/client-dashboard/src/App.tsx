@@ -1,10 +1,10 @@
 import Main from './App.module.scss';
-import LoginForm from './components/Login/LoginForm';
+import LoginFormContainer from './components/Login/LoginFormContainer';
 
 function App() {
 	return (
 		<div className={Main.container}>
-			<LoginForm />
+			<LoginFormContainer />
 		</div>
 	);
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import useInput from '../../hooks/useInput';
 import buttonStyle from '../ui-elements/button.module.scss';
@@ -9,31 +9,30 @@ export default function LoginForm() {
 	const history = useHistory();
 	const [email, setEmail] = useInput('');
 	const [password, setPassword] = useInput('');
+	const [data, setData] = useState({});
 
 	const submitForm = async (e: any): Promise<void> => {
 		e.preventDefault();
-		// const [response] = useFetch(`${process.env.REACT_APP_SERVER}/login`, {
-		// 	method: 'POST',
-		// });
-		// await fetch(`${process.env.REACT_APP_SERVER}/login`, {
-		// 	method: 'POST',
-		// 	headers: {
-		// 		'Content-Type': 'application/json',
-		// 	},
-		// 	body: JSON.stringify({ email, password }),
-		// }).then((response) =>
-		// 	response
-		// 		.json()
-		// 		.then((data) => ({ status: response.status, body: data }))
-		// 		.then((res) => {
-		// 			if (res.status === 200) {
-		// 				//set users id to localstorage
-		// 				localStorage.setItem('id', res.body.id);
-		// 				history.push('/dashboard');
-		// 			}
-		// 			// this.setState({ errors: res.body.status });
-		// 		})
-		// );
+
+		try {
+			const response = await fetch(`${process.env.REACT_APP_SERVER}/login`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ email, password })
+			});
+
+			if (response.status === 200) {
+				const data = await response.json();
+				localStorage.setItem('id', data.id);
+				setData(data);
+				history.push('/dashboard');
+			}
+
+		} catch(err) {
+			throw new Error(err);
+		}
 	};
 
 	return (
@@ -71,7 +70,7 @@ export default function LoginForm() {
 					<input type="checkbox" id="remember" name="remember" />
 					<label htmlFor="remember">Remember me</label>
 				</div>
-				<a href="#">Forgot password?</a>
+				<Link to="#">Forgot password?</Link>
 			</div>
 			<button className={buttonStyle.button}>Login</button>
 			<div className={login.loginFooter}>
